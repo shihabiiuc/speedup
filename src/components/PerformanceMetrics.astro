@@ -1,0 +1,292 @@
+---
+const metrics = [
+  {
+    id: "lighthouse",
+    label: "Lighthouse",
+    value: 98,
+    unit: "",
+    icon: "ti-flame",
+    color: "#f97316",
+    bgColor: "#7c2d12",
+  },
+  {
+    id: "loadtime",
+    label: "Load Time",
+    value: 0.7,
+    unit: "s",
+    icon: "ti-rocket",
+    color: "#3b82f6",
+    bgColor: "#0c1e35",
+  },
+  {
+    id: "seo",
+    label: "SEO Score",
+    value: 95,
+    unit: "",
+    icon: "ti-search",
+    color: "#ec4899",
+    bgColor: "#500724",
+  },
+  {
+    id: "accessibility",
+    label: "Accessibility",
+    value: 100,
+    unit: "",
+    icon: "ti-accessible",
+    color: "#10b981",
+    bgColor: "#064e3b",
+  },
+];
+
+const beforeAfter = [
+  { metric: "Lighthouse", before: 62, after: 98, color: "#f97316" },
+  { metric: "Load Time", before: "4.2s", after: "0.7s", color: "#3b82f6" },
+  { metric: "SEO Score", before: 71, after: 95, color: "#ec4899" },
+  { metric: "Accessibility", before: 78, after: 100, color: "#10b981" },
+];
+---
+
+<section class="py-24 px-6 max-w-7xl mx-auto" data-performance-section>
+  <div class="text-center mb-16">
+    <h2
+      class="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-400 via-blue-400 to-pink-400 tracking-tight mb-4"
+    >
+      Performance at scale
+    </h2>
+    <p class="text-lg text-zinc-400 max-w-2xl mx-auto leading-relaxed">
+      Lightning-fast load times, flawless accessibility, and SEO excellence—<br
+      />delivered by default with every Astro project.
+    </p>
+  </div>
+
+  <!-- Main metrics grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+    {
+      metrics.map((metric) => (
+        <div
+          class="group relative rounded-3xl border border-zinc-800 bg-gradient-to-b from-zinc-900 to-zinc-950 p-8 overflow-hidden transition-all duration-300 hover:border-zinc-700 hover:shadow-lg hover:shadow-zinc-900/50"
+          style="animation: slideUp 0.6s ease-out backwards;"
+        >
+          {/* Animated background glow */}
+          <div
+            class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            style={`background: radial-gradient(circle at center, ${metric.color}15 0%, transparent 70%)`}
+          />
+
+          {/* Content */}
+          <div class="relative z-10 flex flex-col gap-6">
+            {/* Icon */}
+            <div
+              class="w-14 h-14 rounded-2xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
+              style={`background: ${metric.bgColor}`}
+            >
+              <i
+                class={`ti ${metric.icon}`}
+                style={`color: ${metric.color}; font-size: 24px`}
+                aria-hidden="true"
+              />
+            </div>
+
+            {/* Counter */}
+            <div class="flex items-baseline gap-2">
+              <span
+                class="text-5xl font-bold tracking-tight metric-counter"
+                data-target={metric.value}
+                data-decimals={metric.value % 1 !== 0 ? "1" : "0"}
+                data-metric-id={metric.id}
+                style={`color: ${metric.color}`}
+              >
+                0
+              </span>
+              {metric.unit && (
+                <span class="text-xl font-light text-zinc-500">
+                  {metric.unit}
+                </span>
+              )}
+            </div>
+
+            {/* Label */}
+            <p class="text-sm font-medium text-zinc-400 tracking-wide uppercase">
+              {metric.label}
+            </p>
+
+            {/* Progress bar */}
+            <div class="w-full h-1.5 rounded-full bg-zinc-800 overflow-hidden">
+              <div
+                class="h-full rounded-full metric-bar"
+                data-target={metric.value <= 100 ? metric.value : 100}
+                data-metric-id={metric.id}
+                style={`background: ${metric.color}; width: 0%; transition: width 1.8s cubic-bezier(0.34, 1.56, 0.64, 1)`}
+              />
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  {/* Before/After Comparison */}
+  <div
+    class="rounded-3xl border border-zinc-800 bg-gradient-to-b from-zinc-900 to-zinc-950 p-8 md:p-12 overflow-hidden"
+  >
+    <h3 class="text-2xl font-bold text-white mb-2">Before & After</h3>
+    <p class="text-zinc-400 mb-10">
+      Real improvements from switching to our technology stack.
+    </p>
+
+    <div class="space-y-8">
+      {
+        beforeAfter.map((item, i) => {
+          const beforeNum =
+            typeof item.before === "number"
+              ? item.before
+              : parseFloat(item.before as string);
+          const afterNum =
+            typeof item.after === "number"
+              ? item.after
+              : parseFloat(item.after as string);
+          const maxVal = Math.max(beforeNum, 100);
+
+          return (
+            <div class="comparison-item">
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-sm font-semibold text-zinc-300 uppercase tracking-wide">
+                  {item.metric}
+                </span>
+                <div class="flex items-center gap-6">
+                  <div class="text-right">
+                    <span class="text-xs text-zinc-500 block">Before</span>
+                    <span class="text-lg font-bold text-zinc-400">
+                      {item.before}
+                    </span>
+                  </div>
+                  <div class="w-8 h-px bg-zinc-700" />
+                  <div class="text-right">
+                    <span class="text-xs text-zinc-500 block">After</span>
+                    <span
+                      class="text-lg font-bold"
+                      style={`color: ${item.color}`}
+                    >
+                      {item.after}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                {/* Before bar */}
+                <div>
+                  <div class="h-2 rounded-full bg-zinc-800 overflow-hidden">
+                    <div
+                      class="h-full bg-zinc-600 rounded-full comparison-bar-before"
+                      data-target={(beforeNum / maxVal) * 100}
+                      style="width: 0%; transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);"
+                    />
+                  </div>
+                </div>
+
+                {/* After bar */}
+                <div>
+                  <div class="h-2 rounded-full bg-zinc-800 overflow-hidden">
+                    <div
+                      class="h-full rounded-full comparison-bar-after"
+                      data-target={(afterNum / maxVal) * 100}
+                      style={`background: ${item.color}; width: 0%; transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)`}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .group {
+    animation-delay: 0s;
+  }
+
+  .group:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+
+  .group:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+
+  .group:nth-child(4) {
+    animation-delay: 0.3s;
+  }
+</style>
+
+<script>
+  function initMetrics() {
+    const counters = document.querySelectorAll(".metric-counter");
+    const bars = document.querySelectorAll(".metric-bar");
+    const compareBefore = document.querySelectorAll(".comparison-bar-before");
+    const compareAfter = document.querySelectorAll(".comparison-bar-after");
+
+    // Animate metric counters
+    counters.forEach((el) => {
+      const target = parseFloat(el.dataset.target);
+      const decimals = el.dataset.decimals === "1";
+      const unit = el.textContent.replace(/[0-9.s]/g, "") || "";
+
+      let current = 0;
+      const increment = target / 60;
+      const interval = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          current = target;
+          clearInterval(interval);
+        }
+        el.textContent =
+          (decimals ? current.toFixed(1) : Math.round(current)) + unit;
+      }, 30);
+    });
+
+    // Animate metric bars
+    bars.forEach((el) => {
+      setTimeout(() => {
+        el.style.width = el.dataset.target + "%";
+      }, 100);
+    });
+
+    // Animate comparison bars
+    compareBefore.forEach((el) => {
+      setTimeout(() => {
+        el.style.width = el.dataset.target + "%";
+      }, 500);
+    });
+
+    compareAfter.forEach((el) => {
+      setTimeout(() => {
+        el.style.width = el.dataset.target + "%";
+      }, 700);
+    });
+  }
+
+  // Run on page load
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initMetrics);
+  } else {
+    initMetrics();
+  }
+
+  // Also run on Astro navigation (View Transitions)
+  document.addEventListener("astro:after-swap", initMetrics);
+</script>

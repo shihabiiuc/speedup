@@ -1,0 +1,248 @@
+---
+// Header.astro
+
+interface NavLink {
+  label: string;
+  href: string;
+}
+
+const navLinks: NavLink[] = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "Blog", href: "/blog" },
+  { label: "Contact", href: "/contact" },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header
+  id="site-header"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+>
+  <!-- Backdrop — becomes visible on scroll via JS -->
+  <div
+    id="header-backdrop"
+    class="absolute inset-0 border-b border-transparent bg-zinc-950/0 backdrop-blur-md transition-all duration-300"
+  >
+  </div>
+
+  <nav
+    class="relative mx-auto flex h-16 max-w-6xl items-center justify-between px-6 md:h-20"
+  >
+    <!-- Logo -->
+    <a
+      href="/"
+      class="group flex items-center gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 rounded-md"
+    >
+      <img
+        src="/logo.png"
+        alt="Site logo"
+        class="h-8 w-auto transition-opacity duration-200 group-hover:opacity-80 md:h-9"
+      />
+    </a>
+
+    <!-- Desktop nav links -->
+    <ul class="hidden items-center gap-1 md:flex">
+      {
+        navLinks.map((link) => {
+          const isActive =
+            currentPath === link.href ||
+            (link.href !== "/" && currentPath.startsWith(link.href));
+          return (
+            <li>
+              <a
+                href={link.href}
+                class:list={[
+                  "relative px-4 py-2 text-sm font-medium tracking-wide transition-colors duration-200 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400",
+                  isActive ? "text-red-500" : "text-black hover:text-cyan-400",
+                ]}
+              >
+                {/* Active underline indicator */}
+                {isActive && (
+                  <span class="absolute bottom-0 left-1/2 h-px w-4 -translate-x-1/2 bg-gradient-to-r from-transparent via-cyan-400 to-transparent rounded-full" />
+                )}
+                {link.label}
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+
+    <!-- Desktop CTA -->
+    <div class="hidden md:block">
+      <a
+        href="/contact"
+        class="group relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-black/70 bg-blue/5 px-5 py-2 text-sm font-semibold text-red transition-all duration-300 hover:border-cyan-400/40 hover:bg-cyan-400/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+      >
+        <span
+          class="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-500 group-hover:translate-x-full"
+        ></span>
+        Say Hello
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2.5"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Mobile hamburger -->
+    <button
+      id="menu-toggle"
+      aria-label="Toggle navigation menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      class="relative flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-md text-zinc-400 transition-colors hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 md:hidden"
+    >
+      <span
+        id="bar1"
+        class="block h-px w-5 bg-current transition-all duration-300 origin-center"
+      ></span>
+      <span
+        id="bar2"
+        class="block h-px w-5 bg-current transition-all duration-300"></span>
+      <span
+        id="bar3"
+        class="block h-px w-5 bg-current transition-all duration-300 origin-center"
+      ></span>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden md:hidden" aria-hidden="true">
+    <div
+      class="border-t border-white/5 bg-zinc-950/95 backdrop-blur-xl px-6 pb-6 pt-4"
+    >
+      <ul class="flex flex-col gap-1">
+        {
+          navLinks.map((link) => {
+            const isActive =
+              currentPath === link.href ||
+              (link.href !== "/" && currentPath.startsWith(link.href));
+            return (
+              <li>
+                <a
+                  href={link.href}
+                  class:list={[
+                    "flex items-center justify-between rounded-lg px-4 py-3 text-sm font-medium transition-colors duration-150",
+                    isActive
+                      ? "bg-white/5 text-white"
+                      : "text-zinc-400 hover:bg-white/5 hover:text-white",
+                  ]}
+                >
+                  {link.label}
+                  {isActive && (
+                    <span class="h-1.5 w-1.5 rounded-full bg-cyan-400" />
+                  )}
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+
+      <div class="mt-4 border-t border-white/5 pt-4">
+        <a
+          href="/contact"
+          class="flex w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition-all duration-200 hover:border-cyan-400/40 hover:bg-cyan-400/10"
+        >
+          Say Hello
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-3.5 w-3.5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2.5"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Spacer so page content starts below fixed header -->
+<div class="h-16 md:h-20"></div>
+
+<script>
+  // ── Scroll: add backdrop when scrolled ──────────────────────────────────
+  const backdrop = document.getElementById("header-backdrop");
+
+  function onScroll() {
+    if (window.scrollY > 20) {
+      backdrop?.classList.add("bg-zinc-950/80", "border-white/5");
+      backdrop?.classList.remove("bg-zinc-950/0", "border-transparent");
+    } else {
+      backdrop?.classList.remove("bg-zinc-950/80", "border-white/5");
+      backdrop?.classList.add("bg-red-950/0", "border-transparent");
+    }
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll(); // run on mount
+
+  // ── Hamburger menu toggle ────────────────────────────────────────────────
+  const toggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("mobile-menu");
+  const bar1 = document.getElementById("bar1");
+  const bar2 = document.getElementById("bar2");
+  const bar3 = document.getElementById("bar3");
+
+  let isOpen = false;
+
+  function openMenu() {
+    isOpen = true;
+    menu?.classList.remove("hidden");
+    toggle?.setAttribute("aria-expanded", "true");
+    menu?.removeAttribute("aria-hidden");
+    // Animate bars → × shape
+    bar1?.classList.add("translate-y-[6px]", "rotate-45");
+    bar2?.classList.add("opacity-0", "scale-x-0");
+    bar3?.classList.add("-translate-y-[6px]", "-rotate-45");
+  }
+
+  function closeMenu() {
+    isOpen = false;
+    menu?.classList.add("hidden");
+    toggle?.setAttribute("aria-expanded", "false");
+    menu?.setAttribute("aria-hidden", "true");
+    // Reset bars
+    bar1?.classList.remove("translate-y-[6px]", "rotate-45");
+    bar2?.classList.remove("opacity-0", "scale-x-0");
+    bar3?.classList.remove("-translate-y-[6px]", "-rotate-45");
+  }
+
+  toggle?.addEventListener("click", () => (isOpen ? closeMenu() : openMenu()));
+
+  // Close on nav link click
+  menu
+    ?.querySelectorAll("a")
+    .forEach((link) => link.addEventListener("click", closeMenu));
+
+  // Close on Escape
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && isOpen) closeMenu();
+  });
+
+  // Close on outside click
+  document.addEventListener("click", (e) => {
+    const header = document.getElementById("site-header");
+    if (isOpen && header && !header.contains(e.target as Node)) closeMenu();
+  });
+</script>

@@ -1,0 +1,264 @@
+---
+const cards = [
+  {
+    span: "lg:col-span-2",
+    icon: "ti-activity",
+    iconBg: "#0f2e28",
+    iconColor: "#4ade80",
+    title: "Real-time monitoring",
+    desc: "Live uptime, errors, and latency across all services — zero delay.",
+    extra: "metrics",
+  },
+  {
+    span: "lg:row-span-2",
+    icon: "ti-shield-check",
+    iconBg: "#1e1b3a",
+    iconColor: "#a78bfa",
+    title: "Security scanning",
+    desc: "Automated vulnerability scans on every push. CVE detection, dependency audits, and secret leak prevention.",
+    extra: "security",
+  },
+  {
+    span: "",
+    icon: "ti-gauge",
+    iconBg: "#2d1f0a",
+    iconColor: "#fb923c",
+    title: "Lighthouse tracking",
+    desc: "Score trends for every page, every deploy.",
+    extra: "lighthouse",
+  },
+  {
+    span: "",
+    icon: "ti-chart-bar",
+    iconBg: "#0d1f35",
+    iconColor: "#60a5fa",
+    title: "Analytics dashboard",
+    desc: "Traffic, conversions, and user flows in one place.",
+    extra: "analytics",
+  },
+  {
+    span: "lg:col-span-2",
+    icon: "ti-rocket",
+    iconBg: "#2d0f1e",
+    iconColor: "#f472b6",
+    title: "Deploy previews",
+    desc: "Every pull request gets a unique live URL. Share, review, and merge with confidence.",
+    extra: "previews",
+  },
+  {
+    span: "",
+    icon: "ti-users",
+    iconBg: "#1e1b3a",
+    iconColor: "#a78bfa",
+    title: "Team collaboration",
+    desc: "Roles, comments, and approvals — built into the workflow.",
+    extra: "team",
+  },
+  {
+    span: "",
+    icon: "ti-plug",
+    iconBg: "#0d1f35",
+    iconColor: "#60a5fa",
+    title: "API integrations",
+    desc: "Connect your existing stack in minutes.",
+    extra: "integrations",
+  },
+  {
+    span: "",
+    icon: "ti-file-text",
+    iconBg: "#0f2310",
+    iconColor: "#86efac",
+    title: "Markdown reporting",
+    desc: "Auto-generated reports in clean Markdown — ready to commit or share.",
+    extra: "reporting",
+  },
+];
+---
+
+<section class="py-20 px-6 max-w-6xl mx-auto">
+  <div class="text-center mb-12">
+    <h2 class="text-3xl font-semibold text-black tracking-tight">
+      Everything your team needs
+    </h2>
+    <p class="mt-3 text-zinc-400 text-base max-w-xl mx-auto">
+      A complete platform for shipping fast, staying safe, and scaling
+      confidently.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+    {
+      cards.map((card) => (
+        <div
+          class:list={[
+            "rounded-2xl border border-white/10 bg-zinc-900 p-6 flex flex-col gap-4 transition-colors hover:border-white/20 hover:bg-[#3B3B3B]",
+            card.span,
+          ]}
+        >
+          <div
+            class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+            style={`background: ${card.iconBg}`}
+          >
+            <i
+              class={`ti ${card.icon}`}
+              style={`color: ${card.iconColor}; font-size: 20px;`}
+              aria-hidden="true"
+            />
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <h3 class="text-white font-medium text-[15px] leading-snug">
+              {card.title}
+            </h3>
+            <p class="text-zinc-400 text-sm leading-relaxed">{card.desc}</p>
+          </div>
+
+          {card.extra === "metrics" && (
+            <div class="grid grid-cols-3 gap-2 mt-1">
+              {[
+                { val: "99.97%", lbl: "Uptime (30d)" },
+                { val: "42ms", lbl: "Avg. latency" },
+                { val: "0", lbl: "Active incidents", green: true },
+              ].map((m) => (
+                <div class="rounded-xl bg-zinc-800 border border-zinc-700 px-3 py-2.5 flex flex-col gap-0.5">
+                  <span
+                    class:list={[
+                      "text-lg font-medium",
+                      m.green ? "text-green-400" : "text-white",
+                    ]}
+                  >
+                    {m.val}
+                  </span>
+                  <span class="text-zinc-500 text-[11px]">{m.lbl}</span>
+                </div>
+              ))}
+              <div class="col-span-3 flex items-center gap-2 mt-1">
+                <span class="w-2 h-2 rounded-full bg-green-400 shrink-0" />
+                <span class="text-zinc-500 text-xs">
+                  All systems operational
+                </span>
+              </div>
+            </div>
+          )}
+
+          {card.extra === "security" && (
+            <div class="flex flex-col gap-2.5 mt-1">
+              {[
+                { label: "Critical", count: 0, pct: 4, color: "#f87171" },
+                { label: "High", count: 2, pct: 20, color: "#fb923c" },
+                { label: "Medium", count: 7, pct: 55, color: "#60a5fa" },
+                { label: "Low", count: 14, pct: 80, color: "#4ade80" },
+              ].map((row) => (
+                <div class="flex items-center gap-2 text-xs text-zinc-400">
+                  <span class="w-14 shrink-0">{row.label}</span>
+                  <div class="flex-1 h-1 rounded-full bg-zinc-700 overflow-hidden">
+                    <div
+                      class="h-full rounded-full"
+                      style={`width: ${row.pct}%; background: ${row.color}`}
+                    />
+                  </div>
+                  <span class="w-4 text-right text-zinc-400">{row.count}</span>
+                </div>
+              ))}
+              <span class="text-[11px] text-green-400 mt-1">
+                ✓ Last scan: 3 min ago
+              </span>
+            </div>
+          )}
+
+          {card.extra === "lighthouse" && (
+            <div class="flex flex-col gap-2 mt-1">
+              {[
+                { label: "Performance", score: 94 },
+                { label: "Accessibility", score: 98 },
+                { label: "SEO", score: 100 },
+              ].map((row) => (
+                <div class="flex items-center gap-2 text-xs text-zinc-400">
+                  <span class="w-24 shrink-0">{row.label}</span>
+                  <div class="flex-1 h-1 rounded-full bg-white/10 overflow-hidden">
+                    <div
+                      class="h-full rounded-full bg-green-400"
+                      style={`width: ${row.score}%`}
+                    />
+                  </div>
+                  <span class="w-6 text-right text-white font-medium">
+                    {row.score}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {card.extra === "analytics" && (
+            <div class="grid grid-cols-2 gap-2 mt-1">
+              {[
+                { val: "24k", lbl: "Visitors / day" },
+                { val: "3.4%", lbl: "Conversion" },
+              ].map((m) => (
+                <div class="rounded-xl bg-zinc-800 border border-white/5 px-3 py-2.5 flex flex-col gap-0.5">
+                  <span class="text-lg font-medium text-white">{m.val}</span>
+                  <span class="text-zinc-500 text-[11px]">{m.lbl}</span>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {card.extra === "previews" && (
+            <div class="flex flex-col gap-1.5 mt-1">
+              {[
+                "✓  pr-142 / feature-nav  →  pr-142.preview.app",
+                "✓  pr-138 / dark-mode    →  pr-138.preview.app",
+              ].map((line) => (
+                <code class="text-[11px] text-green-400 bg-zinc-800 rounded-lg px-3 py-2 font-mono block">
+                  {line}
+                </code>
+              ))}
+            </div>
+          )}
+
+          {card.extra === "team" && (
+            <div class="flex items-center mt-1">
+              {[
+                { initials: "AK", bg: "#1e1b3a", color: "#a78bfa" },
+                { initials: "JM", bg: "#0f2e28", color: "#4ade80" },
+                { initials: "SR", bg: "#2d1f0a", color: "#fb923c" },
+                { initials: "TL", bg: "#0d1f35", color: "#60a5fa" },
+                { initials: "+8", bg: "#1a1a1a", color: "#71717a" },
+              ].map((a, i) => (
+                <div
+                  class="w-8 h-8 rounded-full flex items-center justify-center text-[10px] font-medium border-2 border-zinc-950"
+                  style={`background: ${a.bg}; color: ${a.color}; margin-left: ${i === 0 ? "0" : "-8px"}`}
+                >
+                  {a.initials}
+                </div>
+              ))}
+            </div>
+          )}
+
+          {card.extra === "integrations" && (
+            <div class="flex flex-wrap gap-1.5 mt-1">
+              {[
+                "GitHub",
+                "Slack",
+                "Datadog",
+                "PagerDuty",
+                "Jira",
+                "+34 more",
+              ].map((tag) => (
+                <span class="text-[11px] text-zinc-400 bg-white/5 border border-white/10 rounded-full px-2.5 py-1">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+
+          {card.extra === "reporting" && (
+            <span class="text-[11px] text-green-400 bg-green-400/10 border border-green-400/20 rounded-full px-3 py-1 self-start mt-1">
+              Weekly digest · PDF · Slack
+            </span>
+          )}
+        </div>
+      ))
+    }
+  </div>
+</section>
