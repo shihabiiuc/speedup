@@ -180,7 +180,7 @@ const currentPath = Astro.url.pathname;
 <!-- Spacer so page content starts below fixed header -->
 <div class="h-16 md:h-20"></div>
 
-<script>
+<!-- <script>
   // ── Scroll: add backdrop when scrolled ──────────────────────────────────
   const backdrop = document.getElementById("header-backdrop");
 
@@ -244,5 +244,85 @@ const currentPath = Astro.url.pathname;
   document.addEventListener("click", (e) => {
     const header = document.getElementById("site-header");
     if (isOpen && header && !header.contains(e.target as Node)) closeMenu();
+  });
+  
+</script> -->
+
+<script>
+  function initHeader() {
+    const backdrop = document.getElementById("header-backdrop");
+
+    function onScroll() {
+      if (window.scrollY > 20) {
+        backdrop?.classList.add("bg-zinc-950/80", "border-white/5");
+        backdrop?.classList.remove("bg-zinc-950/0", "border-transparent");
+      } else {
+        backdrop?.classList.remove("bg-zinc-950/80", "border-white/5");
+        backdrop?.classList.add("bg-zinc-950/0", "border-transparent");
+      }
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    const toggle = document.getElementById("menu-toggle");
+    const menu = document.getElementById("mobile-menu");
+    const bar1 = document.getElementById("bar1");
+    const bar2 = document.getElementById("bar2");
+    const bar3 = document.getElementById("bar3");
+
+    let isOpen = false;
+
+    function openMenu() {
+      isOpen = true;
+      menu?.classList.remove("hidden");
+      toggle?.setAttribute("aria-expanded", "true");
+      menu?.removeAttribute("aria-hidden");
+
+      bar1?.classList.add("translate-y-[6px]", "rotate-45");
+      bar2?.classList.add("opacity-0", "scale-x-0");
+      bar3?.classList.add("-translate-y-[6px]", "-rotate-45");
+    }
+
+    function closeMenu() {
+      isOpen = false;
+      menu?.classList.add("hidden");
+      toggle?.setAttribute("aria-expanded", "false");
+      menu?.setAttribute("aria-hidden", "true");
+
+      bar1?.classList.remove("translate-y-[6px]", "rotate-45");
+      bar2?.classList.remove("opacity-0", "scale-x-0");
+      bar3?.classList.remove("-translate-y-[6px]", "-rotate-45");
+    }
+
+    toggle?.addEventListener("click", () =>
+      isOpen ? closeMenu() : openMenu(),
+    );
+
+    menu
+      ?.querySelectorAll("a")
+      .forEach((link) => link.addEventListener("click", closeMenu));
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && isOpen) closeMenu();
+    });
+
+    document.addEventListener("click", (e) => {
+      const header = document.getElementById("site-header");
+      if (isOpen && header && !header.contains(e.target)) closeMenu();
+    });
+
+    // IMPORTANT: return cleanup function (optional but best practice)
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
+  }
+
+  // initial run
+  initHeader();
+
+  // re-run after navigation
+  document.addEventListener("astro:page-load", () => {
+    initHeader();
   });
 </script>

@@ -1,11 +1,18 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
+import FunFacts from "../components/FunFacts.astro";
+import LogoClould from "../components/LogoClould.astro";
+import TwoCol from "../components/TwoCol.astro";
 ---
 
-<Layout>
+<Layout title="About" description="Learn more about our company and mission.">
   <Hero
-    heading="About"
-    description="Learn more about our company and mission."
+    heading="We Make Slow Websites Fast"
+    description="We help businesses transform slow, outdated websites into fast, modern experiences that users actually enjoy using."
+    buttonText="Learn More"
   />
+  <TwoCol />
+  <LogoClould />
+  <FunFacts />
 </Layout>

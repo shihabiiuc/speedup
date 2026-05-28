@@ -1,0 +1,32 @@
+---
+import officeDesk from "../assets/images/alex-kotliarskyi-QBpZGqEMsKg-unsplash.jpg";
+import { Image } from "astro:assets";
+---
+
+<section class="mx-auto max-w-6xl px-6 py-16">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+    <!-- Left Column (Image) -->
+    <div>
+      <Image
+        src={officeDesk}
+        alt="Slow website performance illustration"
+        class="w-full h-auto rounded-xl shadow-lg object-cover"
+      />
+    </div>
+
+    <!-- Right Column (Text) -->
+    <div class="space-y-6 text-[1.5em] leading-relaxed text-zinc-700">
+      <p>
+        A slow website hurts conversions, search rankings, and customer trust.
+        Our goal is simple: improve speed, performance, and user experience
+        without sacrificing design or functionality.
+      </p>
+
+      <p>
+        Whether it’s a business website, landing page, blog, or eCommerce store,
+        we optimize every layer of the website to deliver a faster experience
+        across desktop and mobile devices.
+      </p>
+    </div>
+  </div>
+</section>
