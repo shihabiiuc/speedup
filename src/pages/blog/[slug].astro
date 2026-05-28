@@ -1,0 +1,26 @@
+---
+import HeroBlogpost from "../../components/HeroBlogpost.astro";
+import Layout from "../../layouts/Layout.astro";
+import { getCollection, render } from "astro:content";
+
+import { Image } from "astro:assets";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Layout title={post.data.title} description={post.data.description}>
+  <HeroBlogpost heading={post.data.title} description={post.data.description} />
+  <article class="max-w-3xl mx-auto px-6 py-16 prose">
+    <Content />
+  </article>
+</Layout>

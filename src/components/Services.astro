@@ -1,0 +1,536 @@
+---
+// Services.astro — Three-column services grid
+const services = [
+  {
+    index: "01",
+    tag: "Core Service",
+    title: "Website Speed\nOptimization",
+    lead: "We improve slow-loading websites by optimizing every performance bottleneck, from code and assets to server response and rendering behavior.",
+    body: "This service is focused on making your website feel instant and responsive for users across all devices. We work on improving Core Web Vitals, reducing load time, and ensuring a smooth browsing experience that helps increase engagement and conversions.",
+    accent: "#1a1a2e",
+    accentLight: "#eeeef8",
+    icon: "speed",
+    metrics: ["Core Web Vitals", "Load Time", "Rendering"],
+  },
+  {
+    index: "02",
+    tag: "Transformation",
+    title: "Modern Website\nTransformation",
+    lead: "We transform outdated, poorly designed websites into modern, high-performing digital experiences.",
+    body: "This includes improving layout, user interface, responsiveness, and overall structure while keeping your brand identity intact. The result is a clean, modern website that looks professional, builds trust, and works seamlessly on mobile and desktop.",
+    accent: "#0d3b2e",
+    accentLight: "#eef6f3",
+    icon: "transform",
+    metrics: ["UI Redesign", "Mobile-First", "Brand Aligned"],
+  },
+  {
+    index: "03",
+    tag: "Advisory",
+    title: "Performance &\nWebsite Consultation",
+    lead: "Not sure why your website is slow or underperforming? This service gives you a clear, actionable roadmap.",
+    body: "We analyze your website's performance, identify key issues, and provide practical recommendations you can implement immediately or with our help. Perfect for business owners and teams who want expert guidance before investing in development work.",
+    accent: "#2d1a00",
+    accentLight: "#fef6ed",
+    icon: "consult",
+    metrics: ["Audit Report", "Action Plan", "Expert Review"],
+  },
+];
+---
+
+<section class="services-section">
+
+  <!-- Subtle background texture -->
+  <div class="section-texture" aria-hidden="true"></div>
+
+  <div class="services-container">
+
+    <!-- Section header -->
+    <header class="services-header">
+      <div class="header-left">
+        <p class="services-eyebrow">
+          <span class="eyebrow-dot"></span>
+          What We Offer
+        </p>
+        <h2 class="services-title">
+          Three ways we help<br />
+          <span class="title-italic">your website perform.</span>
+        </h2>
+      </div>
+      <div class="header-right">
+        <p class="services-description">
+          Every engagement starts with understanding your goals. We offer focused, specialist services so you get exactly what your website needs — nothing more, nothing less.
+        </p>
+        <a href="/contact" class="header-cta">
+          <span>Start a conversation</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </header>
+
+    <!-- Divider -->
+    <div class="header-rule" aria-hidden="true"></div>
+
+    <!-- Cards grid -->
+    <div class="services-grid">
+      {services.map((s, i) => (
+        <article
+          class="service-card"
+          style={`--card-accent: ${s.accent}; --card-accent-light: ${s.accentLight}; --delay: ${i * 0.12}s`}
+          data-index={i + 1}
+        >
+          <!-- Top bar -->
+          <div class="card-topbar">
+            <span class="card-index">{s.index}</span>
+            <span class="card-tag">{s.tag}</span>
+          </div>
+
+          <!-- Icon -->
+          <div class="card-icon" aria-hidden="true">
+            {s.icon === "speed" && (
+              <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                <circle cx="18" cy="18" r="14" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3"/>
+                <path d="M18 10v8l5 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M10 18h2M24 18h2M18 10v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+              </svg>
+            )}
+            {s.icon === "transform" && (
+              <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                <rect x="6" y="6" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                <rect x="20" y="20" width="10" height="10" rx="3" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M16 11h4l-2-2M20 11l-2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+                <path d="M11 16v4l-2-2M11 20l2-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+                <path d="M16 25h4M25 16v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+              </svg>
+            )}
+            {s.icon === "consult" && (
+              <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                <path d="M8 28V12a2 2 0 012-2h16a2 2 0 012 2v10a2 2 0 01-2 2H14l-6 4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                <path d="M13 16h10M13 20h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+              </svg>
+            )}
+          </div>
+
+          <!-- Content -->
+          <div class="card-content">
+            <h3 class="card-title">{s.title}</h3>
+            <p class="card-lead">{s.lead}</p>
+            <p class="card-body">{s.body}</p>
+          </div>
+
+          <!-- Metrics pills -->
+          <div class="card-metrics" aria-label="Focus areas">
+            {s.metrics.map(m => (
+              <span class="metric-pill">{m}</span>
+            ))}
+          </div>
+
+          <!-- Card footer CTA -->
+          <div class="card-footer">
+            <a href="/contact" class="card-link">
+              Learn more
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Hover highlight layer -->
+          <div class="card-glow" aria-hidden="true"></div>
+        </article>
+      ))}
+    </div>
+
+    <!-- Bottom note -->
+    <p class="services-note">
+      All services are available independently or as part of an ongoing engagement.
+      <a href="/contact">Get in touch</a> to discuss what fits your situation best.
+    </p>
+
+  </div>
+</section>
+
+<style>
+  /* ============================================================
+     FONT IMPORT
+  ============================================================ */
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Epilogue:wght@300;400;500;600&display=swap');
+
+  /* ============================================================
+     DESIGN TOKENS
+  ============================================================ */
+  :root {
+    --ff-display: 'Playfair Display', Georgia, serif;
+    --ff-body: 'Epilogue', 'Helvetica Neue', sans-serif;
+
+    --clr-bg: #f8f7f4;
+    --clr-bg-card: #ffffff;
+    --clr-border: #e4e2dc;
+    --clr-border-strong: #c8c4bc;
+    --clr-text-dark: #18181b;
+    --clr-text-mid: #52525b;
+    --clr-text-light: #a1a1aa;
+    --clr-rule: #d4d0c8;
+  }
+
+  /* ============================================================
+     SECTION
+  ============================================================ */
+  .services-section {
+    position: relative;
+    background-color: var(--clr-bg);
+    padding: clamp(80px, 10vw, 130px) clamp(20px, 6vw, 80px);
+    font-family: var(--ff-body);
+    overflow: hidden;
+  }
+
+  /* Subtle linen-like texture via SVG noise */
+  .section-texture {
+    position: absolute;
+    inset: 0;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    pointer-events: none;
+  }
+
+  .services-container {
+    position: relative;
+    z-index: 1;
+    max-width: 1360px;
+    margin: 0 auto;
+  }
+
+  /* ============================================================
+     SECTION HEADER — horizontal split layout
+  ============================================================ */
+  .services-header {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-bottom: 48px;
+  }
+  @media (min-width: 768px) {
+    .services-header {
+      grid-template-columns: 1fr 1fr;
+      align-items: end;
+      gap: 64px;
+    }
+  }
+
+  .services-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--clr-text-mid);
+    margin: 0 0 20px;
+  }
+  .eyebrow-dot {
+    display: block;
+    width: 6px;
+    height: 6px;
+    background: var(--clr-text-dark);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .services-title {
+    font-family: var(--ff-display);
+    font-size: clamp(2rem, 3.8vw, 3.4rem);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    color: var(--clr-text-dark);
+    margin: 0;
+  }
+  .title-italic {
+    font-style: italic;
+    font-weight: 700;
+    color: var(--clr-text-mid);
+  }
+
+  .header-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 24px;
+  }
+
+  .services-description {
+    font-size: clamp(0.9rem, 1.1vw, 1rem);
+    line-height: 1.75;
+    color: var(--clr-text-mid);
+    margin: 0;
+    font-weight: 300;
+    max-width: 480px;
+  }
+
+  .header-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--clr-text-dark);
+    text-decoration: none;
+    width: fit-content;
+    padding-bottom: 3px;
+    border-bottom: 1.5px solid var(--clr-text-dark);
+    transition: gap 0.25s ease, opacity 0.25s ease;
+  }
+  .header-cta:hover {
+    gap: 12px;
+    opacity: 0.7;
+  }
+
+  .header-rule {
+    height: 1px;
+    background: var(--clr-rule);
+    margin-bottom: 48px;
+  }
+
+  /* ============================================================
+     SERVICES GRID
+  ============================================================ */
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  @media (min-width: 1024px) {
+    .services-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* ============================================================
+     SERVICE CARD
+  ============================================================ */
+  .service-card {
+    position: relative;
+    background: var(--clr-bg-card);
+    border: 1px solid var(--clr-border);
+    border-radius: 16px;
+    padding: 36px 36px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    overflow: hidden;
+    transition:
+      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.3s ease;
+    cursor: default;
+
+    /* Entry animation */
+    opacity: 0;
+    transform: translateY(24px);
+    animation: cardReveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) var(--delay, 0s) forwards;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--card-accent, #18181b);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+  .service-card:hover {
+    transform: translateY(-8px);
+    box-shadow:
+      0 2px 4px rgba(0,0,0,0.04),
+      0 12px 40px rgba(0,0,0,0.10),
+      0 40px 80px rgba(0,0,0,0.06);
+    border-color: transparent;
+  }
+  .service-card:hover::before {
+    opacity: 1;
+  }
+  .service-card:hover .card-glow {
+    opacity: 1;
+  }
+
+  /* Hover glow */
+  .card-glow {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, var(--card-accent-light, #f5f5f5) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    border-radius: 16px;
+  }
+
+  /* ---- Top bar ---- */
+  .card-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+    position: relative;
+    z-index: 1;
+  }
+  .card-index {
+    font-family: var(--ff-display);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    color: var(--clr-text-light);
+  }
+  .card-tag {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--clr-bg-card);
+    background: var(--card-accent, #18181b);
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+
+  /* ---- Icon ---- */
+  .card-icon {
+    color: var(--card-accent, #18181b);
+    margin-bottom: 22px;
+    display: flex;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .service-card:hover .card-icon {
+    transform: scale(1.1) rotate(-3deg);
+  }
+
+  /* ---- Content ---- */
+  .card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 24px;
+  }
+  .card-title {
+    font-family: var(--ff-display);
+    font-size: clamp(1.3rem, 1.8vw, 1.6rem);
+    font-weight: 700;
+    line-height: 1.18;
+    letter-spacing: -0.01em;
+    color: var(--clr-text-dark);
+    margin: 0;
+    white-space: pre-line;
+  }
+  .card-lead {
+    font-size: clamp(0.87rem, 1vw, 0.95rem);
+    line-height: 1.65;
+    color: var(--clr-text-dark);
+    font-weight: 500;
+    margin: 0;
+    border-left: 2px solid var(--card-accent, #18181b);
+    padding-left: 14px;
+    opacity: 0.85;
+  }
+  .card-body {
+    font-size: clamp(0.82rem, 0.95vw, 0.88rem);
+    line-height: 1.75;
+    color: var(--clr-text-mid);
+    margin: 0;
+    font-weight: 300;
+  }
+
+  /* ---- Metric pills ---- */
+  .card-metrics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 1;
+  }
+  .metric-pill {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--card-accent, #18181b);
+    background: var(--card-accent-light, #f0f0f0);
+    padding: 5px 11px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    transition: border-color 0.2s ease;
+  }
+  .service-card:hover .metric-pill {
+    border-color: var(--card-accent, #18181b);
+    opacity: 0.9;
+  }
+
+  /* ---- Footer ---- */
+  .card-footer {
+    padding-top: 20px;
+    border-top: 1px solid var(--clr-border);
+    position: relative;
+    z-index: 1;
+  }
+  .card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--clr-text-dark);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: gap 0.25s ease, color 0.25s ease;
+  }
+  .card-link:hover {
+    gap: 10px;
+    color: var(--card-accent, #18181b);
+  }
+
+  /* ============================================================
+     BOTTOM NOTE
+  ============================================================ */
+  .services-note {
+    margin-top: 48px;
+    text-align: center;
+    font-size: 0.82rem;
+    color: var(--clr-text-light);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+  .services-note a {
+    color: var(--clr-text-mid);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s ease;
+  }
+  .services-note a:hover {
+    color: var(--clr-text-dark);
+  }
+
+  /* ============================================================
+     ANIMATIONS
+  ============================================================ */
+  @keyframes cardReveal {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .service-card {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>
