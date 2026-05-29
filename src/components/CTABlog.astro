@@ -21,7 +21,7 @@ const styles =
         border: "border-red-500/20",
         bg: "bg-red-500/5",
         title: "text-red-500",
-        button: "bg-red-500 hover:bg-red-400 text-white",
+        button: "bg-red-500 hover:bg-red-400 !text-white",
       }
     : {
         border: "border-cyan-500/20",
@@ -32,7 +32,7 @@ const styles =
 ---
 
 <div class={`mt-12 rounded-2xl border ${styles.border} ${styles.bg} p-8`}>
-  <h2 class={`text-2xl font-bold mb-4 ${styles.title}`}>
+  <h2 class={`!mt-0 text-2xl font-bold mb-4 ${styles.title}`}>
     {title}
   </h2>
 

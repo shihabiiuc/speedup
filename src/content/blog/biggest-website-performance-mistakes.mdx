@@ -6,29 +6,39 @@ pubDate: 2026-05-28
 author: "Tyler Oliveira"
 ---
 
+import { Image } from "astro:assets";
 import CTABlog from "../../components/CTABlog.astro";
 
-A fast website is no longer a luxury. Visitors expect pages to load instantly, especially on mobile devices and slower internet connections. Even a small delay can reduce conversions, increase bounce rates, and negatively affect search rankings.
+import francisco from "../../assets/images/francisco-de-legarreta-c-hHg9MC-G8_Y-unsplash.jpg";
+import rodrigo from "../../assets/images/rodrigo-rodrigues-wolf-r-t-DFgroXiHFHw-unsplash.jpg";
+import quilia from "../../assets/images/quilia-uq5RMAZdZG4-unsplash.jpg";
+import sammy from "../../assets/images/sammyayot254-knUZi7dzb58-unsplash.jpg";
+
+A fast website is no longer a luxury. Visitors expect pages to load instantly, especially on mobile devices and slower internet connections. Even a small delay can <a href="/blog/choosing-the-right-tech-stack-for-websites">reduce conversions</a>, increase bounce rates, and negatively affect search rankings.
 
 Unfortunately, many business websites are still built using outdated practices that prioritize convenience over performance. Bloated themes, oversized images, unnecessary scripts, and poor hosting decisions are some of the biggest reasons modern websites become frustratingly slow.
 
 ## Heavy Images and Unoptimized Media
 
-One of the most common performance mistakes is uploading massive images directly from cameras or design tools without optimization. Large image files force browsers to download more data than necessary, which dramatically slows down page loading times.
+<Image src={francisco} alt="Heavy Images and Unoptimized Media" />
 
-Many websites also use the wrong image formats. PNG files are often used where modern formats like WebP or AVIF would provide much better compression with almost identical quality. Videos, background animations, and autoplay media can also add significant weight to a webpage.
+One of the most common performance mistakes is uploading massive images directly from cameras or design tools without optimization. Large image <a href="/blog/mobile-performance-optimization-guide">files force browsers to download more data</a> than necessary, which dramatically slows down page loading times.
 
-Modern websites should use responsive image techniques so smaller devices only download appropriately sized images. Lazy loading is another important optimization that delays loading offscreen content until it becomes visible.
+Many websites also use the wrong image formats. PNG files are often used where modern formats like WebP or AVIF would provide much better compression <a href="/about">with almost identical quality</a>. Videos, background animations, and autoplay media can also add significant weight to a webpage.
+
+Modern websites should use responsive image techniques so smaller devices only download appropriately sized images. Lazy loading is <a href="/contact">another important optimization</a> that delays loading offscreen content until it becomes visible.
 
 Optimizing media alone can reduce page sizes by several megabytes and significantly improve Core Web Vitals scores.
 
 ### Plugin Overload and Unnecessary Scripts
 
+<Image src={rodrigo} alt="Plugin Overload and Unnecessary Scripts" />
+
 Another major issue is excessive reliance on plugins and third-party scripts. Many business websites install dozens of plugins for features that could be handled with simpler solutions or lightweight custom code.
 
-Each plugin usually adds its own CSS files, JavaScript bundles, database queries, and background processes. Over time, this creates a heavy website that becomes increasingly difficult to maintain and optimize.
+Each plugin usually adds its own CSS files, JavaScript bundles, database queries, and <a href="/blog/biggest-website-performance-mistakes">background processes</a>. Over time, this creates a heavy website that becomes increasingly difficult to maintain and optimize.
 
-Third-party integrations such as chat widgets, tracking tools, social media embeds, and marketing popups can also slow down performance. While these tools may provide value, too many of them running simultaneously can negatively impact the user experience.
+Third-party integrations such as chat widgets, tracking tools, social media embeds, and marketing popups can also slow down performance. While these <a href="/blog/choosing-the-right-tech-stack-for-websites">tools may provide value</a>, too many of them running simultaneously can negatively impact the user experience.
 
 Modern frameworks and performance-focused architectures aim to reduce unnecessary JavaScript and deliver only the code needed for each page. This approach results in faster rendering and smoother interactions across devices.
 
@@ -36,9 +46,27 @@ Modern frameworks and performance-focused architectures aim to reduce unnecessar
 
 Even a well-designed website can perform poorly if it runs on low-quality hosting infrastructure. Cheap shared hosting environments often struggle during traffic spikes and may introduce slow server response times.
 
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-10">
+  <div class="overflow-hidden rounded-2xl border border-black/10 dark:border-white/10 shadow-md">
+    <Image
+      src={quilia}
+      alt="Poor Hosting and Outdated Website Architecture"
+      class="w-full h-full object-cover aspect-[3/4] hover:scale-[1.02] transition-transform duration-300"
+    />
+  </div>
+
+  <div class="overflow-hidden rounded-2xl border border-black/10 dark:border-white/10 shadow-md">
+    <Image
+      src={sammy}
+      alt="Poor Hosting and Outdated Website Architecture"
+      class="w-full h-full object-cover aspect-[3/4] hover:scale-[1.02] transition-transform duration-300"
+    />
+  </div>
+</div>
+
 Outdated website architectures can also create bottlenecks. Traditional systems that generate pages dynamically for every request are often slower compared to modern static or hybrid rendering approaches.
 
-Today, many developers are moving toward performance-focused solutions using technologies like Astro, Next.js, edge hosting, CDN delivery, and caching layers. These systems reduce server workload and deliver content much faster to visitors worldwide.
+Today, many developers are moving toward performance-focused solutions using technologies like Astro, Next.js, edge hosting, CDN delivery, and caching layers. These <a href="/contact">systems reduce server</a> workload and deliver content much faster to visitors worldwide.
 
 Caching is especially important. Without proper caching, websites repeatedly process the same data for every visitor, wasting server resources and increasing load times unnecessarily.
 

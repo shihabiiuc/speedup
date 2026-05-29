@@ -7,17 +7,24 @@ pubDate: 2026-05-28
 author: "Tyler Oliveira"
 ---
 
+import { Image } from "astro:assets";
+import justin from "../../assets/images/justin-morgan-ZjX-z2Q5zrk-unsplash.jpg";
+import stephen from "../../assets/images/stephen-phillips-hostreviews-co-uk-2kH-6T6x_0I-unsplash.jpg";
+
 import CTABlog from "../../components/CTABlog.astro";
 
 # Why Static and Hybrid Websites Are Replacing Traditional WordPress Setups
 
-For years, WordPress has been the default choice for building business websites. It’s familiar, widely supported, and easy to set up. However, as user expectations and performance standards evolve, many developers and businesses are moving toward static and hybrid architectures.
+For years, WordPress has been the default choice for building business websites. It’s familiar, widely supported, and easy to set up. However, as <a href="/services">user expectations</a> and performance standards evolve, many developers and businesses are moving toward static and hybrid architectures.
 
-This shift is not about replacing WordPress entirely—it’s about solving its limitations in performance, scalability, and modern development workflows.
+This shift is not about replacing WordPress entirely—it’s <a href="/contact">about solving its limitations</a> in performance, scalability, and modern development workflows.
 
 ## The Limitations of Traditional WordPress Setups
 
-Traditional WordPress websites are typically built as monolithic systems. The frontend, backend, database, and rendering logic are tightly connected, which makes them flexible but also heavier to run.
+<Image src={justin} alt="The Limitations of Traditional WordPress Setups" />
+Traditional WordPress websites are typically built as monolithic systems. The
+frontend, backend, database, and rendering logic are tightly connected, which
+makes them flexible but also heavier to run.
 
 As websites grow, this architecture often leads to performance issues. Every page request may require database queries, PHP execution, plugin processing, and theme rendering before content is delivered to the user.
 
@@ -28,6 +35,8 @@ Over time, adding plugins for SEO, caching, forms, security, and page builders c
 Performance issues in WordPress are often not visible at the beginning. Small websites can run smoothly, but as content, plugins, and traffic increase, response times tend to degrade.
 
 Shared hosting environments further amplify this issue. Limited server resources mean slower response times during traffic spikes, which directly impacts user experience and SEO performance.
+
+<Image src={stephen} alt="Why Performance Becomes a Problem at Scale" />
 
 Additionally, frontend-heavy page builders often generate unnecessary HTML and scripts, increasing page size and reducing loading speed.
 

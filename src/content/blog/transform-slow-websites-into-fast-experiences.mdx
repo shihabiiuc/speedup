@@ -6,15 +6,21 @@ pubDate: 2026-05-28
 author: "Tyler Oliveira"
 ---
 
+import { Image } from "astro:assets";
+import ilya from "../../assets/images/ilya-pavlov-OqtafYT5kTw-unsplash.jpg";
+import markus from "../../assets/images/markus-spiske-1LLh8k2_YFk-unsplash.jpg";
+
 import CTABlog from "../../components/CTABlog.astro";
 
 # How We Transform Slow Websites Into Lightning Fast Experiences
 
-A slow website is more than just a technical issue—it directly affects user trust, search rankings, and business revenue. Many businesses don’t realize how much performance loss they are experiencing until they see how a properly optimized website behaves.
+A slow website is more than just a technical issue—it directly affects user trust, <a href="/contact">search rankings</a>, and business revenue. Many businesses don’t realize how much performance loss they are experiencing until they see how a properly optimized website behaves.
 
-Transforming a slow website into a fast, modern experience is not about adding a single plugin or making minor tweaks. It requires a structured process that addresses architecture, assets, code quality, and delivery strategy.
+Transforming a slow website into a fast, modern experience is not about adding a single plugin or <a href="/services">making minor tweaks</a>. It requires a structured process that addresses architecture, assets, code quality, and delivery strategy.
 
 ## Understanding What Makes Websites Slow
+
+<Image src={ilya} alt="Understanding What Makes Websites Slow" />
 
 Before improving performance, it is important to identify the real causes of slowness. In most cases, the issue is not one single factor but a combination of multiple inefficiencies.
 
@@ -25,6 +31,8 @@ Server-side inefficiencies can also play a role. Slow database queries, weak hos
 ### The Importance of a Performance Audit
 
 Every optimization process starts with a performance audit. This involves analyzing Core Web Vitals, network requests, bundle sizes, and rendering behavior.
+
+<Image src={markus} alt="The Importance of a Performance Audit" />
 
 Tools like Lighthouse and real-user monitoring help identify bottlenecks that affect real visitors. Instead of guessing what is slow, we rely on measurable data to guide improvements.
 
