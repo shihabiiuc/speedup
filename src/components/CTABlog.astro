@@ -1,0 +1,49 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  buttonText?: string;
+  buttonHref?: string;
+  variant?: "cyan" | "red";
+}
+
+const {
+  title = "Is Your Website Fast Enough?",
+  description = "We help businesses evaluate and improve website performance for better SEO and conversions.",
+  buttonText = "Get a Free Performance Review",
+  buttonHref = "/contact",
+  variant = "red",
+} = Astro.props;
+
+const styles =
+  variant === "red"
+    ? {
+        border: "border-red-500/20",
+        bg: "bg-red-500/5",
+        title: "text-red-500",
+        button: "bg-red-500 hover:bg-red-400 text-white",
+      }
+    : {
+        border: "border-cyan-500/20",
+        bg: "bg-cyan-500/5",
+        title: "text-white",
+        button: "bg-cyan-500 hover:bg-cyan-400 text-black",
+      };
+---
+
+<div class={`mt-12 rounded-2xl border ${styles.border} ${styles.bg} p-8`}>
+  <h2 class={`text-2xl font-bold mb-4 ${styles.title}`}>
+    {title}
+  </h2>
+
+  <p class="text-zinc-900 leading-relaxed">
+    {description}
+  </p>
+
+  <a
+    href={buttonHref}
+    class={`inline-flex items-center mt-6 rounded-full px-6 py-3 text-sm font-semibold transition ${styles.button}`}
+  >
+    {buttonText}
+  </a>
+</div>
