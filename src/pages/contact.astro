@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Hero from "../components/Hero.astro";
+import Hero from "../components/HeroBlogpost.astro";
 ---
 
 <Layout>
@@ -8,4 +8,66 @@ import Hero from "../components/Hero.astro";
     heading="Contact"
     description="Need help with your website's performance? Reach out to us for a free consultation and let's discuss how we can improve your site's speed and SEO together."
   />
+
+  <form
+    action="https://formspree.io/f/xkoeenby"
+    method="POST"
+    class="py-20 px-5 sm:px-0 max-w-xl mx-auto space-y-5"
+  >
+    <!-- Name -->
+    <input
+      type="text"
+      name="name"
+      placeholder="Your Name"
+      required
+      class="w-full rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-white focus:border-cyan-400 focus:outline-none"
+    />
+
+    <!-- Email -->
+    <input
+      type="email"
+      name="email"
+      placeholder="Your Email"
+      required
+      class="w-full rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-white focus:border-cyan-400 focus:outline-none"
+    />
+
+    <!-- Phone -->
+    <input
+      type="tel"
+      name="phone"
+      placeholder="Your Phone Number"
+      class="w-full rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-white focus:border-cyan-400 focus:outline-none"
+    />
+
+    <!-- Message -->
+    <textarea
+      name="message"
+      placeholder="Your Message"
+      rows="6"
+      required
+      class="w-full rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-white focus:border-cyan-400 focus:outline-none"
+    ></textarea>
+
+    <!-- Optional subject -->
+    <input
+      type="hidden"
+      name="_subject"
+      value="New Inquiry from SpeedUp Website"
+    />
+
+    <input
+      type="hidden"
+      name="_next"
+      value="https://speedup-iota.vercel.app/thank-you"
+    />
+
+    <!-- Submit -->
+    <button
+      type="submit"
+      class="cursor-pointer w-full rounded-full bg-cyan-500 px-6 py-3 font-semibold text-black hover:bg-cyan-400 transition"
+    >
+      Send Message
+    </button>
+  </form>
 </Layout>
