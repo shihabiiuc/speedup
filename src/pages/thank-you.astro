@@ -1,6 +1,69 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
-import Hero from "../components/Hero.astro";
+import Hero from "../components/HeroBlogpost.astro";
+import keepitasis1 from "../assets/images/alex-kotliarskyi-QBpZGqEMsKg-unsplash.jpg";
+import keepitasis2 from "../assets/images/musemind-ux-agency-gFKcJNeNvhw-unsplash.jpg";
+import keepitasis3 from "../assets/images/aranprime-KbytCpI1i5I-unsplash.jpg";
+import keepitasis4 from "../assets/images/ofspace-llc-jUIOwgzumvM-unsplash.jpg";
+import keepitasis5 from "../assets/images/arvin-mogheyse-0gMgu4nI63k-unsplash.jpg";
+import keepitasis6 from "../assets/images/peaky-frames--5M2SEutsCo-unsplash.jpg";
+import keepitasis7 from "../assets/images/azwedo-l-lc-nT4WsKUoLo4-unsplash.jpg";
+import keepitasis8 from "../assets/images/petr-magera-Ugnm0F4e00U-unsplash.jpg";
+import keepitasis9 from "../assets/images/azwedo-l-lc-Q7gIMX0Uf3Y-unsplash.jpg";
+import keepitasis10 from "../assets/images/quilia-uq5RMAZdZG4-unsplash.jpg";
+import keepitasis11 from "../assets/images/creative-minds-factory-YLzJtu-Vmmo-unsplash.jpg";
+import keepitasis12 from "../assets/images/rahul-mishra-XXMA-8fBB-g-unsplash.jpg";
+import keepitasis13 from "../assets/images/fotis-fotopoulos-6sAl6aQ4OWI-unsplash.jpg";
+import keepitasis14 from "../assets/images/rodrigo-rodrigues-wolf-r-t-DFgroXiHFHw-unsplash.jpg";
+import keepitasis15 from "../assets/images/francisco-de-legarreta-c-hHg9MC-G8_Y-unsplash.jpg";
+import keepitasis16 from "../assets/images/sammyayot254-knUZi7dzb58-unsplash.jpg";
+import keepitasis17 from "../assets/images/ilya-pavlov-OqtafYT5kTw-unsplash.jpg";
+import keepitasis18 from "../assets/images/shubham-dhage-IlUq1ruyv0Q-unsplash.jpg";
+import keepitasis19 from "../assets/images/israel-andrade-YI_9SivVt_s-unsplash.jpg";
+import keepitasis20 from "../assets/images/simon-lohmann-HpmJyD6i01o-unsplash.jpg";
+import keepitasis21 from "../assets/images/jahanzeb-ahsan-ZbFoi92fyzY-unsplash.jpg";
+import keepitasis22 from "../assets/images/stephen-phillips-hostreviews-co-uk-2kH-6T6x_0I-unsplash.jpg";
+import keepitasis23 from "../assets/images/justin-morgan-VxLhYXuLQN8-unsplash.jpg";
+import keepitasis24 from "../assets/images/stephen-phillips-hostreviews-co-uk-shr_Xn8S8QU-unsplash.jpg";
+import keepitasis25 from "../assets/images/justin-morgan-ZjX-z2Q5zrk-unsplash.jpg";
+import keepitasis26 from "../assets/images/tecnic-bioprocess-solutions-R4a4zrZ8KfQ-unsplash.jpg";
+import keepitasis27 from "../assets/images/luke-chesser-JKUTrJ4vK00-unsplash.jpg";
+import keepitasis28 from "../assets/images/tecnic-bioprocess-solutions-xdar9L2_clo-unsplash.jpg";
+import keepitasis29 from "../assets/images/markus-spiske-1LLh8k2_YFk-unsplash.jpg";
+import keepitasis30 from "../assets/images/wonderlane-FkHpejze0C4-unsplash.jpg";
+const images = [
+  keepitasis1,
+  keepitasis2,
+  keepitasis3,
+  keepitasis4,
+  keepitasis5,
+  keepitasis6,
+  keepitasis7,
+  keepitasis8,
+  keepitasis9,
+  keepitasis10,
+  keepitasis11,
+  keepitasis12,
+  keepitasis13,
+  keepitasis14,
+  keepitasis15,
+  keepitasis16,
+  keepitasis17,
+  keepitasis18,
+  keepitasis19,
+  keepitasis20,
+  keepitasis21,
+  keepitasis22,
+  keepitasis23,
+  keepitasis24,
+  keepitasis25,
+  keepitasis26,
+  keepitasis27,
+  keepitasis28,
+  keepitasis29,
+  keepitasis30,
+];
 ---
 
 <Layout>
@@ -8,4 +71,25 @@ import Hero from "../components/Hero.astro";
     heading="Thank You!"
     description="We've received your message and will get back to you as soon as possible."
   />
+
+  <section class="w-full py-20 bg-zinc-950">
+    <div class="w-full px-4 md:px-10">
+      <!-- Masonry Grid -->
+      <div
+        class="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-5 space-y-5"
+      >
+        {
+          images.map((img, index) => (
+            <div class="break-inside-avoid overflow-hidden rounded-2xl border border-white/10 shadow-lg group">
+              <Image
+                src={img}
+                alt={`Gallery image ${index + 1}`}
+                class="w-full h-auto object-cover transition duration-300 group-hover:scale-[1.03]"
+              />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
 </Layout>
